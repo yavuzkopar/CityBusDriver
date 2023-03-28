@@ -81,7 +81,6 @@ public class Passenger : MonoBehaviour
     private void ReachToTheBus()
     {
         isGointToBus = false;
-        BusManager.Instance.AddPassenger();
         isInBus = true;
         OnGetToBus?.Invoke();
         OnMoneyUpdated((int)moneyAmount);

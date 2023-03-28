@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BusManager : MonoBehaviour
 {
-    public event Action OnPassengerAdded;
     public event Action<BusStation> OnDoorOpened;
     public int Money { get; private set; }
 
@@ -35,10 +34,6 @@ public class BusManager : MonoBehaviour
             return true;
         else
             return false;
-    }
-    public void AddPassenger()
-    {
-        OnPassengerAdded?.Invoke();
     }
     public void AddMoney(int amount)
     {

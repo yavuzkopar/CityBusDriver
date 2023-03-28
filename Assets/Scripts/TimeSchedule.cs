@@ -7,7 +7,9 @@ public class TimeSchedule : MonoBehaviour
     public static TimeSchedule Instance { get; private set; }
     public event Action OnClockUpdated;
     private float timer;
+    [SerializeField] float timeSpeed = 10;
     private static Clock m_Clock;
+
     private void Awake()
     {
         Instance = this;
@@ -15,7 +17,7 @@ public class TimeSchedule : MonoBehaviour
     }
     private void Update()
     {
-        timer += Time.deltaTime *10;
+        timer += Time.deltaTime *timeSpeed;
         if (timer >= 1f)
         {
             m_Clock.minutes++;

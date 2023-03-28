@@ -2,9 +2,9 @@ using UnityEngine;
 using TMPro;
 using System;
 
-public class TimeSchecule : MonoBehaviour
+public class TimeSchedule : MonoBehaviour
 {
-    public static TimeSchecule Instance { get; private set; }
+    public static TimeSchedule Instance { get; private set; }
     public event Action OnClockUpdated;
     private float timer;
     private static Clock m_Clock;

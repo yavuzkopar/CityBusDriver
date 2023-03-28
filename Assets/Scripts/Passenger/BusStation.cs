@@ -18,10 +18,15 @@ public class BusStation : MonoBehaviour
         timer += Time.deltaTime;
         if (timer > 1f)
         {
-            if(passengerCount < maxPassenger && isStationActive)
+            if (CanGeneratePassenger())
                 GeneratePasengers();
             timer = 0f;
         }
+    }
+
+    private bool CanGeneratePassenger()
+    {
+        return passengerCount < maxPassenger && isStationActive;
     }
 
     private void GeneratePasengers()

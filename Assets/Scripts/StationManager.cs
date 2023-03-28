@@ -24,7 +24,7 @@ public class StationManager : MonoBehaviour
     private void BusManager_OnDoorOpened(BusStation activeStation)
     {
         activeStation.SetStationActive(false);
-        bool isArrivedOnTime = activeStation.GetArriveTime() > TimeSchecule.GetClock();
+        bool isArrivedOnTime = activeStation.GetArriveTime() > TimeSchedule.GetClock();
         if (isArrivedOnTime)
             goodFeedBack.SetActive(true);
         else

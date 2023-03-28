@@ -8,7 +8,7 @@ public class UIWorldHourText : MonoBehaviour
     void Start()
     {
         worldHourText= GetComponent<TextMeshProUGUI>();
-        TimeSchecule.Instance.OnClockUpdated += Instance_OnClockUpdated;
+        TimeSchedule.Instance.OnClockUpdated += Instance_OnClockUpdated;
         UpdateText();
     }
 
@@ -19,7 +19,7 @@ public class UIWorldHourText : MonoBehaviour
 
     private void UpdateText()
     {
-        worldHourText.text = "Time is : " + TimeSchecule.GetClock().ToString();
+        worldHourText.text = "Time is : " + TimeSchedule.GetClock().ToString();
     }
 
 }

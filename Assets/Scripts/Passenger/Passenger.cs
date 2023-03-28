@@ -53,7 +53,7 @@ public class Passenger : MonoBehaviour
         if (isGoingToTargetStation)
             GoToTargetStation(moveSpeed);
 
-        bool isBusLate = TimeSchecule.GetClock() > myBusStation.GetArriveTime();
+        bool isBusLate = TimeSchedule.GetClock() > myBusStation.GetArriveTime();
 
         if (isBusLate)
            if(moneyAmount > -10)

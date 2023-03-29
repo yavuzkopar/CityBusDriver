@@ -10,12 +10,17 @@ public class Passenger : MonoBehaviour
 
     private BusStation myBusStation;
     private BusStation targetBusstation;
-    private bool isGointToBus;
-    private bool isGoingToTargetStation;
-    private bool isInBus;
     private float moneyAmount = 10;
   
     private Animator animator;
+    enum PassengerState
+    {
+        Idle,
+        GoingToBus,
+        InBus,
+        GoingToStation
+    }
+    private PassengerState state = PassengerState.Idle;
     void Start()
     {
         BusManager.Instance.OnDoorOpened += BusManager_OnDoorOpened;
@@ -27,30 +32,30 @@ public class Passenger : MonoBehaviour
         if(busStation == myBusStation)
             BoardToTheBus();
         
-        if (busStation == targetBusstation && isInBus)
+        if (busStation == targetBusstation && state == PassengerState.InBus)
             DisEmbark();
     }
 
     private void BoardToTheBus()
     {
-        if (isInBus) return;
-        isGointToBus = true;
+        if (state == PassengerState.InBus) return;
+        state = PassengerState.GoingToBus;
         transform.parent = BusManager.Instance.transform;
     }
 
     private void DisEmbark()
     {
         transform.parent = null;
-        isGoingToTargetStation = true;
+        state = PassengerState.GoingToStation;
     }
 
     void Update()
     {
         float moveSpeed = 3f;
-        if (isGointToBus)
+        if (state == PassengerState.GoingToBus)
             GoToBus(moveSpeed);
 
-        if (isGoingToTargetStation)
+        if (state == PassengerState.GoingToStation)
             GoToTargetStation(moveSpeed);
 
         bool isBusLate = TimeSchedule.GetClock() > myBusStation.GetArriveTime();
@@ -80,8 +85,7 @@ public class Passenger : MonoBehaviour
 
     private void ReachToTheBus()
     {
-        isGointToBus = false;
-        isInBus = true;
+        state = PassengerState.InBus;
         OnGetToBus?.Invoke();
         OnMoneyUpdated((int)moneyAmount);
     }
